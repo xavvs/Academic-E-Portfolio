@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Louis Gardoce — Academic e-Portfolio</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --terracotta: #C85A32;
+    --terracotta-dark: #A8431D;
+    --terracotta-soft: rgba(200, 90, 50, 0.08);
+    --terracotta-card: #B34E2B;
+    --sand: #F7F4EF;
+    --cream: #FAF8F5;
+    --card-bg: #FFFFFF;
+    --ink: #221E1D;
+    --muted: #7A736E;
+    --line: #E8E2D9;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--ink);
+    background-color: var(--sand);
+    line-height: 1.6;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* WATERMARK SEAL BACKGROUND */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65vh;
+    height: 65vh;
+    max-width: 80vw;
+    max-height: 80vw;
+    background-image: url("https://upload.wikimedia.org/wikipedia/en/d/df/PNU_Official_Seal.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .serif { font-family: 'Playfair Display', serif; }
+
+  /* NAVIGATION - Pinned Sticky across whole page */
+  .site-nav {
+    background: rgba(250, 248, 245, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .brand-seal {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .brand-name {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .navbar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .nav-link-custom {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink) !important;
+    font-weight: 600;
+    padding: 0.5rem 0.9rem !important;
+    white-space: nowrap;
+    position: relative;
+    transition: color 0.2s ease;
+    text-decoration: none;
+  }
+  .nav-link-custom::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0.9rem;
+    right: 0.9rem;
+    height: 2px;
+    background: var(--terracotta);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+  }
+  .nav-link-custom:hover, 
+  .nav-link-custom:focus, 
+  .nav-link-custom.active {
+    color: var(--terracotta) !important;
+  }
+  .nav-link-custom:hover::after, 
+  .nav-link-custom:focus::after, 
+  .nav-link-custom.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .nav-link-custom.dropdown-toggle::after {
+    display: none;
+  }
+
+  .dropdown-caret {
+    display: inline-block;
+    margin-left: 0.35rem;
+    font-size: 0.65rem;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+  }
+  
+  .show > .nav-link-custom .dropdown-caret {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu-custom {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    padding: 0.5rem 0;
+    background: var(--card-bg);
+    margin-top: 0.5rem;
+  }
+  .dropdown-menu-custom .dropdown-item {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: 0.65rem 1.25rem;
+    transition: all 0.2s ease;
+  }
+  .dropdown-menu-custom .dropdown-item:hover, 
+  .dropdown-menu-custom .dropdown-item.active {
+    background: var(--sand);
+    color: var(--terracotta);
+  }
+
+  /* LANDING HERO WRAPPER */
+  .landing-hero-block {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HERO */
+  .hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0;
+  }
+  .eyebrow {
+    font-size: 0.9rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+  .hero-name {
+    font-size: clamp(3.5rem, 5.8vw, 5.2rem);
+    line-height: 0.98;
+    color: var(--ink);
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1.2rem;
+    max-width: 560px;
+    line-height: 1.65;
+  }
+  .btn-terracotta {
+    background: var(--terracotta);
+    color: #fff;
+    border: none;
+    padding: 1rem 2.2rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .btn-terracotta:hover {
+    background: var(--terracotta-dark);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .btn-outline-custom {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    padding: 1rem 2.2rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .btn-outline-custom:hover {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-photo {
+    width: 100%;
+    max-width: 420px;
+    max-height: 58vh;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.09);
+  }
+  .badge-note {
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    padding: 0.85rem 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* TICKER / TAG BAR */
+  .tag-bar {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: rgba(250, 248, 245, 0.9);
+    backdrop-filter: blur(8px);
+    padding: 1.25rem 0;
+  }
+  .tag-bar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.2rem;
+    margin: 0;
+    padding: 0;
+  }
+  .tag-bar li {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .tag-bar li::after {
+    content: "•";
+    color: var(--terracotta);
+    margin-left: 2.2rem;
+  }
+  .tag-bar li:last-child::after { content: ""; margin: 0; }
+
+  /* SECTION STYLES */
+  section { position: relative; z-index: 1; scroll-margin-top: 80px; }
+  .section-padding { padding: 5.5rem 0; }
+  .section-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: 2.2rem;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ABOUT SECTION STYLES */
+  .about-section-wrapper {
+    background: rgba(247, 244, 239, 0.85);
+  }
+  .about-portrait-card {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    padding: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+  }
+  .about-portrait-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .about-quote-card {
+    background: var(--cream);
+    border-left: 4px solid var(--terracotta);
+    border-top: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 1.8rem 2rem;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 1.8rem;
+  }
+  .about-quote-card p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 0;
+    font-style: italic;
+  }
+
+  .about-narrative-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 2.2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+  }
+  .about-narrative-card p {
+    color: var(--muted);
+    font-size: 0.96rem;
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+  .about-narrative-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .about-table-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1.8rem 2rem;
+    margin-top: 1.5rem;
+  }
+  .about-table-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .about-table-item {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.8rem;
+  }
+  .about-table-item:nth-last-child(-n+2) {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .about-table-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .about-table-val {
+    font-size: 0.92rem;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* PEDAGOGY SECTION STYLES */
+  .pedagogy-section {
+    background: rgba(250, 248, 245, 0.92);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 6rem 0;
+  }
+  .pedagogy-header-banner {
+    background: var(--terracotta);
+    color: #FFFFFF;
+    border-radius: 6px;
+    padding: 3rem 2.5rem;
+    margin-bottom: 3.5rem;
+    box-shadow: 0 15px 35px rgba(200, 90, 50, 0.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .pedagogy-header-banner::before {
+    content: "“";
+    position: absolute;
+    right: 2rem;
+    bottom: -3rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 14rem;
+    color: rgba(255, 255, 255, 0.1);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .pedagogy-banner-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.8vw, 2.3rem);
+    line-height: 1.35;
+    font-weight: 500;
+    margin: 0;
+    max-width: 900px;
+  }
+  .pedagogy-banner-quote span {
+    font-style: italic;
+    text-decoration: underline;
+    text-decoration-color: rgba(255,255,255,0.4);
+    text-underline-offset: 4px;
+  }
+
+.pedagogy-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Fits all 4 cards across in 1 row */
+  gap: 1.5rem;
+}
+
+/* Optional responsive breakdown for smaller screens */
+@media (max-width: 1024px) {
+  .pedagogy-cards-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2x2 layout on tablets */
+  }
+}
+
+@media (max-width: 640px) {
+  .pedagogy-cards-grid {
+    grid-template-columns: 1fr; /* Stack vertically on mobile */
+  }
+}
+
+  .pedagogy-pillar-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--terracotta);
+    border-radius: 4px;
+    padding: 2.2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    height: 100%;
+  }
+  .pedagogy-pillar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+  }
+  .pedagogy-badge {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--terracotta);
+    background: var(--terracotta-soft);
+    padding: 0.35rem 0.75rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 1.2rem;
+  }
+  .pedagogy-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+  .pedagogy-card-body p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .pedagogy-card-body p:last-child {
+    margin-bottom: 0;
+  }
+  .pedagogy-takeaway {
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px dashed var(--line);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--terracotta-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* ACADEMIC CARDS */
+  .academic-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    padding: 2rem;
+    border-radius: 4px;
+    height: 100%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .academic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.04);
+  }
+  .card-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+/* Portfolio Card Item Styling */
+.elem-card {
+  background: #ffffff;
+  border: 1px solid var(--elem-border-line);
+  border-left: 4px solid var(--elem-accent);
+  border-radius: 6px;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.elem-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.elem-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.elem-card-number {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--elem-accent);
+}
+
+.elem-card-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: #f4f1ea;
+  color: #7a7368;
+  padding: 0.3rem 0.6rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.elem-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--elem-text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.elem-card-subtitle {
+  font-size: 0.85rem;
+  color: var(--elem-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.elem-card-footer {
+  border-top: 1px dashed var(--elem-border-line);
+  padding-top: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--elem-accent);
+}
+
+.elem-card-footer .arrow {
+  transition: transform 0.2s ease;
+}
+
+.elem-card:hover .elem-card-footer .arrow {
+  transform: translateX(4px);
+}
+
+/* Split-Panel Modal Styling */
+.bg-soft-elem {
+  background-color: var(--elem-accent-soft);
+}
+
+.text-elem {
+  color: var(--elem-accent);
+}
+
+.btn-elem {
+  background-color: var(--elem-accent);
+  color: #ffffff;
+  border: none;
+}
+
+.btn-elem:hover {
+  background-color: #b04e2a;
+  color: #ffffff;
+}
+
+#elemModalDescription p {
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+/* Ensure uniform box height so buttons align across both columns */
+.elem-file-box {
+  background: #ffffff;
+  border: 1px solid var(--elem-border-line, #e5e0d8);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
+}
+
+/* Button Styling */
+.btn-elem-primary {
+  background-color: var(--elem-accent, #c85a32);
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-elem-primary:hover {
+  background-color: #b04e2a;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.btn-elem-primary:active {
+  transform: translateY(0);
+}
+
+/* Modal Divider Line on Desktop */
+@media (min-width: 768px) {
+  .border-end-md {
+    border-right: 1px solid var(--elem-border-line) !important;
+  }
+}
+
+#dualModalCol1Desc, #dualModalCol2Desc {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--elem-text-muted);
+}
+
+  /* ARTIFACTS SECTION STYLES */
+  .artifacts-section {
+    background: rgba(247, 244, 239, 0.85);
+    border-top: 1px solid var(--line);
+    padding: 6rem 0;
+  }
+  .artifact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1.75rem 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .artifact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--terracotta);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .artifact-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200, 90, 50, 0.3);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+  }
+  .artifact-card:hover::before {
+    opacity: 1;
+  }
+  .artifact-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    margin-bottom: 0.8rem;
+  }
+  .artifact-badge {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--muted);
+    background: var(--sand);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+  }
+  .artifact-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+  .artifact-sub {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+  .artifact-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--terracotta);
+    border-top: 1px dashed var(--line);
+    padding-top: 0.85rem;
+  }
+
+  /* SUBSECTION HIGHLIGHT BOXES */
+  .subsection-block {
+    scroll-margin-top: 100px;
+  }
+
+    /* CONTACT CALL-TO-ACTION SECTION */
+  .contact-cta-section {
+    background:  #A8431D;
+    color: #FFFFFF;
+    padding: 5.5rem 0 4.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .contact-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .contact-cta-title em {
+    font-style: italic;
+    font-weight: 600;
+  }
+  .contact-subtext {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+  }
+
+  .contact-info-list {
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .contact-info-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .contact-label {
+    width: 100px;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+    padding-top: 0.2rem;
+    flex-shrink: 0;
+  }
+  .contact-value {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  .contact-value a {
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .contact-value a:hover {
+    color: #FFB380;
+    text-decoration: underline;
+  }
+
+  /* PDF MODAL */
+  .pdf-modal .modal-content {
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: var(--cream);
+  }
+  .pdf-modal .modal-header {
+    border-bottom: 1px solid var(--line);
+    padding: 1.25rem 1.75rem;
+  }
+  .pdf-modal .modal-body {
+    padding: 0;
+    height: 75vh;
+    background: #525659;
+    position: relative;
+  }
+  .pdf-modal iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #ffffff;
+  }
+
+  footer {
+    background: var(--cream);
+    border-top: 1px solid var(--line);
+    padding: 3rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 991.98px) {
+    .landing-hero-block {
+      min-height: auto;
+    }
+    .hero {
+      padding: 3rem 0;
+    }
+    .hero-photo {
+      max-height: none;
+    }
+    .pedagogy-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+    .about-table-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-table-item:nth-last-child(-n+2) {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.8rem;
+    }
+    .about-table-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .navbar-collapse-custom {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+      padding: 1rem 1.5rem;
+    }
+    .navbar-collapse-custom.show {
+      display: block;
+    }
+    .navbar-nav {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 0.25rem !important;
+    }
+    .nav-link-custom {
+      width: 100%;
+      padding: 0.7rem 0 !important;
+    }
+    .badge-note { position: relative; bottom: 0; left: 0; margin-top: 1rem; display: inline-block; }
+  }
+
+  /* Card Container */
+.portfolio-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  aspect-ratio: 4 / 3;
+}
+
+.portfolio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Hover Effect & Overlay */
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(10,20,35,0.75) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1.25rem;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-img {
+  transform: scale(1.04);
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.caption-tag {
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.view-btn {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Lightbox Modal Customization */
+#lightboxModal .modal-content {
+  background-color: #ffffff !important;
+  border-radius: 12px;
+}
+
+.modal-photo {
+  max-height: 75vh;
+  object-fit: contain;
+}
+ /* --terracotta: #C85A32;
+    --terracotta-dark: #A8431D;
+    --terracotta-soft: rgba(200, 90, 50, 0.08);
+    --terracotta-card: #B34E2B;
+    --sand: #F7F4EF;
+    --cream: #FAF8F5;
+    --card-bg: #FFFFFF; */
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #A8431D;
+  color: #FFFFFF;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.prev-btn { left: 1.5rem; }
+.next-btn { right: 1.5rem; }
+</style>
+</head>
+<body>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="site-nav">
+    <div class="container-xxl">
+      <div class="d-flex align-items-center justify-content-between py-3">
+        <a href="#home" class="d-flex align-items-center gap-3 text-decoration-none">
+          <div class="brand-seal">LG</div>
+          <span class="brand-name">Academic Portfolio</span>
+        </a>
+
+        <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" id="navToggle" aria-label="Toggle navigation">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="navbar-collapse-custom d-lg-block" id="mainNav">
+          <ul class="navbar-nav ms-auto align-items-center mb-0">
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#philosophy">Philosophy</a></li>
+            <!-- <li class="nav-item"><a class="nav-link nav-link-custom" href="#research">Assessments</a></li> -->
+            <!-- <li class="nav-item"><a class="nav-link nav-link-custom" href="#artifacts">Artifacts</a></li> -->
+            <li class="nav-item dropdown position-relative">
+              <a class="nav-link nav-link-custom dropdown-toggle" href="#" id="portfolioDrop" data-bs-toggle="dropdown" aria-expanded="false">
+                Portfolio <span class="dropdown-caret">▼</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-custom border-0" aria-labelledby="portfolioDrop">
+                <li><a class="dropdown-item" href="#artifacts">EDUC 3</a></li>
+                <li><a class="dropdown-item" href="#masteral">EDUC 4</a></li>
+                <!-- <li><a class="dropdown-item" href="#webinars">Seminars &amp; Lectures</a></li> -->
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- LANDING HERO BLOCK -->
+  <div class="landing-hero-block" id="home">
+    <header class="hero">
+      <div class="container-xxl">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <p class="eyebrow mb-2">English Educator | CTP Student | Lifelong Learner</p>
+            <h1 class="serif hero-name mb-1">LOUIS<br>GARDOCE</h1>
+            <p class="hero-desc mb-3">Through this portfolio, I invite you to explore my teaching journey, educational beliefs, learning experiences, and continuing development as an educator.</p>
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+              <a href="#philosophy" class="btn-terracotta">Learn More &rarr;</a>
+              <a href="#contact" class="btn-outline-custom">Contact Me</a>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="hero-photo-wrap mx-auto text-center" style="max-width:320px;">
+              <img class="hero-photo" src="Pics/ProfilePicture.png" alt="Scholar Portrait">
+              <div class="badge-note">Welcome to my professional ePortfolio.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- TICKER -->
+    <div class="tag-bar">
+      <div class="container-xxl">
+        <ul>
+          <li>Passion for Teaching</li>
+          <li>Educational Growth</li>
+          <li>Creative Learning</li>
+          <li>Student Development</li>
+          <li>Knowledge Sharing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <section class="section-padding about-section-wrapper" id="about">
+    <div class="container-xxl">
+      <p class="section-eyebrow">01 &middot; Overview &amp; Background</p>
+      <h2 class="serif section-title">Biography &amp; Academic Background</h2>
+
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="about-portrait-card">
+            <img class="about-portrait-img" src="pics/ProfilePicture.png" alt="Academic Portrait">
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="about-quote-card">
+            <p>"Through teaching, I hope to inspire curiosity, confidence, and a lifelong love of learning."</p>
+          </div>
+
+          <div class="about-narrative-card">
+            <h1 class="eyebrow mb-2">About me</h1>
+            <p>I am <b>Louis Gardoce</b>, an English educator currently pursuing a <b>Certificate in Teaching Program (CTP)</b> at the Philippine Normal University.</p>
+            <p>My professional journey has not followed a straight path toward teaching. Before fully entering the field of education, I gained experience in different professional environments, including legal work, banking, online English teaching, and recruitment. Each experience exposed me to different people, expectations, communication styles, and ways of working. Looking back, these experiences have become part of the perspective I bring into the classroom.</p>
+            <p>My transition into education began with ESL teaching, where I discovered how meaningful it can be to help learners communicate more confidently and effectively. Since then, teaching has become more than a profession for me. It has become a continuous process of learning, adapting, reflecting, and growing alongside my students.</p>
+            <p>Today, I work as an English Specialist while continuing my formal preparation as a teacher through the CTP. My experiences have taught me that effective teaching requires more than knowledge of a subject. It requires patience, intentionality, empathy, flexibility, and a willingness to understand learners as individuals.</p>
+            <p>As I continue my journey in education, I hope to become a teacher who does not simply help students learn English, but also helps them develop the confidence to use their voices.</p>
+            <h1 class="eyebrow mb-2">My Teaching Journey</h1>
+            <p>My journey as an educator began somewhat unexpectedly.</p>
+            <p>My earlier professional experiences gave me opportunities to develop skills in communication, organization, problem-solving, and working with people. However, it was through teaching English that I began to understand how these skills could be used in a different and more meaningful way.</p>
+            <p>As I entered the ESL field, I encountered learners with different backgrounds, proficiency levels, goals, personalities, and learning needs. Some students needed support with grammar and vocabulary. Others knew the language well but struggled to express themselves confidently. These experiences taught me that knowing English and being able to use English effectively are not always the same thing.</p>
+            <p>Teaching therefore became an exercise in observation and adaptation. I learned to look beyond a student's immediate mistakes and ask deeper questions: <b>What is preventing this learner from progressing? What kind of support does this student need? How can I make the learning experience meaningful?</b></p>
+            <p>My experience at AIEP has further shaped this perspective. Working with diverse learners has strengthened my belief that students learn best when they feel supported and understood. It has also taught me to value the small moments of progress—a student speaking with greater confidence, expressing an idea more clearly, understanding a concept that once seemed difficult, or simply becoming more willing to participate.</p>
+            <p>Pursuing the Certificate in Teaching Program has added another dimension to this journey. It has allowed me to examine experiences that I once understood intuitively through the lens of educational theory and pedagogy. Concepts that may have seemed abstract in class become more meaningful when I can connect them to situations I have encountered as a teacher.</p>
+            <p>My journey is therefore not a story of arriving at a finished version of myself as an educator. It is a continuing process of becoming.</p>
+            <p><b>I teach, I reflect, I learn, and I continue to grow.</b></p>
+          </div>
+
+          <div class="about-table-card">
+            <div class="about-table-grid">
+              <div class="about-table-item">
+                <div class="about-table-label">Academic Degree</div>
+                <div class="about-table-val">AB Foreign Service</div>
+              </div>
+              <div class="about-table-item">
+                <div class="about-table-label">Specialization</div>
+                <div class="about-table-val">Communications Trainer</div>
+              </div>
+              <div class="about-table-item">
+                <div class="about-table-label">Institutional Affiliation</div>
+                <div class="about-table-val">American Institute for English Proficiency Inc.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEDAGOGY SECTION -->
+  <section class="pedagogy-section" id="philosophy">
+    <div class="container-xxl">
+      <p class="section-eyebrow text-center mb-1">02 &middot; Educational Foundation</p>
+      <h2 class="serif section-title text-center mb-4">Teaching Philosophy &amp; Core Beliefs</h2>
+
+      <div class="pedagogy-header-banner">
+        <p class="pedagogy-banner-quote">
+          "I believe teaching is not only about sharing <span>knowledge</span>, but also about inspiring <span>growth</span>, curiosity, and <span>lifelong learning</span>."
+        </p>
+      </div>
+
+      <div class="pedagogy-cards-grid">
+        <div class="pedagogy-pillar-card">
+          <div>
+            <span class="pedagogy-badge">Pillar 01</span>
+            <h3 class="pedagogy-card-title">Teaching Beyond the Lesson</h3>
+            <div class="pedagogy-card-body">
+              <p>I believe that effective teaching begins with a simple principle: <b>learners need to feel that they are cared for.</b></p>
+              <p>A classroom is more than a place where information is transferred from teacher to student. It is a space where learners take risks, make mistakes, ask questions, discover their abilities, and gradually develop confidence. For language learners in particular, this environment matters because communication requires vulnerability. Students need to feel sufficiently safe to speak, make mistakes, and try again.</p>
+              <p>As an English educator, I therefore see my role as more than teaching grammar, vocabulary, pronunciation, or communication strategies. My responsibility is also to create conditions in which learners can use what they have learned meaningfully.</p>
+            </div>
+          </div>
+          <div class="pedagogy-takeaway">
+            <span>◆ Core Value:</span> Compassion
+          </div>
+        </div>
+
+        <div class="pedagogy-pillar-card">
+          <div>
+            <span class="pedagogy-badge">Pillar 02</span>
+            <h3 class="pedagogy-card-title">The Learner Comes First</h3>
+            <div class="pedagogy-card-body">
+              <p>I believe that students are not identical recipients of instruction. They bring different experiences, strengths, goals, difficulties, and ways of learning into the classroom.</p>
+              <p>Because of this, I value learner-centered and responsive teaching. Rather than relying solely on a fixed approach, I believe teachers should observe their learners and adjust instruction when necessary. A strategy that works well for one student may not work as effectively for another.</p>
+
+            </div>
+          </div>
+          <div class="pedagogy-takeaway">
+            <span>◆ Core Value:</span> Learner-Centeredness
+          </div>
+        </div>
+
+        <div class="pedagogy-pillar-card">
+          <div>
+            <span class="pedagogy-badge">Pillar 03</span>
+            <h3 class="pedagogy-card-title">Mistakes Are Part of Learning</h3>
+            <div class="pedagogy-card-body">
+              <p>Language learning inevitably involves mistakes. I do not view mistakes simply as failures to be corrected; they can also provide valuable information about what a learner currently understands and what still needs development.</p>
+              <p>I aim to create an environment where students can make mistakes without feeling embarrassed or discouraged. Feedback should not merely point out what is wrong. It should help learners understand why something needs improvement and, more importantly, how they can improve it.</p>
+            </div>
+          </div>
+          <div class="pedagogy-takeaway">
+            <span>◆ Core Value:</span> Growth Mindset
+          </div>
+        </div>
+
+        
+        <div class="pedagogy-pillar-card">
+          <div>
+            <span class="pedagogy-badge">Pillar 04</span>
+            <h3 class="pedagogy-card-title">Mistakes Are Part of Learning</h3>
+            <div class="pedagogy-card-body">
+              <p>Language learning inevitably involves mistakes. I do not view mistakes simply as failures to be corrected; they can also provide valuable information about what a learner currently understands and what still needs development.</p>
+              <p>I aim to create an environment where students can make mistakes without feeling embarrassed or discouraged. Feedback should not merely point out what is wrong. It should help learners understand why something needs improvement and, more importantly, how they can improve it.</p>
+            </div>
+          </div>
+          <div class="pedagogy-takeaway">
+            <span>◆ Core Value:</span> Lifelong Learning
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH SECTION
+  <section class="section-padding" id="research">
+    <div class="container-xxl">
+      <p class="section-eyebrow">03 &middot; Academic Focus</p>
+      <h2 class="serif section-title">Assessment of Learning</h2>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="academic-card">
+            <div class="card-tag">Lorem Journal 01</div>
+            <h3 class="serif card-title">Lorem Ipsum Dolor Sit Amet Consectetur</h3>
+            <p class="text-muted small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="academic-card">
+            <div class="card-tag">Lorem Journal 02</div>
+            <h3 class="serif card-title">Adipiscing Elit Sed Do Eiusmod Tempor</h3>
+            <p class="text-muted small">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="academic-card">
+            <div class="card-tag">Lorem Journal 03</div>
+            <h3 class="serif card-title">Incididunt Ut Labore Et Dolore Magna</h3>
+            <p class="text-muted small">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ARTIFACTS SECTION -->
+  <section class="artifacts-section" id="artifacts">
+    <div class="container-xxl">
+      <p class="section-eyebrow">04 &middot; PORTFOLIO EDUC 3</p>
+      <h2 class="serif section-title">Philosophies and Methods of Teaching</h2>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Self-Introduction', 'Files/Self-Introduction.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">01</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Self-Introduction</h3>
+              <p class="artifact-sub">All about myself</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        
+       <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Unit3-Handout', 'Files/Unit3-Handout.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">02</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Unit 3 Topic Facilitation  Handout</h3>
+              <p class="artifact-sub">My Dominant Teaching Style</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Unit3-Presentation', 'Files/Unit3-Presentation.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">03</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Unit 3 Topic Facilitation Presentation</h3>
+              <p class="artifact-sub">My Dominant Teaching Style</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-1', 'Files/Worksheet-1.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">04</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 1</h3>
+              <p class="artifact-sub">PPST Competency Survey</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-2', 'Files/Worksheet-2.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">05</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 2</h3>
+              <p class="artifact-sub">My Acrostics and Curriculum Conceptions and Role of Curricularist</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-3', 'Files/Worksheet-3.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">06</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 3/4</h3>
+              <p class="artifact-sub">21st Century New Literacies and SDGs</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-5', 'Files/Worksheet-5.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">07</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 5</h3>
+              <p class="artifact-sub">Comparison of Higher Education Institutions: Philosophy, Vision, Mission</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-6', 'Files/Worksheet-6.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">08</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 6</h3>
+              <p class="artifact-sub">My Guiding Principles-for-Effective-Teaching</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-7', 'Files/Worksheet-7.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">09</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 7</h3>
+              <p class="artifact-sub">My Philosophy on Teaching and Learning</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-8', 'Files/Worksheet-8.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">10</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 8</h3>
+              <p class="artifact-sub">Compilation Critique Revised English Group</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-9', 'Files/Worksheet-9.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">11</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 9</h3>
+              <p class="artifact-sub">Class Observation at PNU FGEEL_AUGUST 2026 DDM</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-10', 'Files/Worksheet-10.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">12</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 10</h3>
+              <p class="artifact-sub">Creative and Integrated Lesson Plan</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-11', 'Files/Worksheet-11.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">13</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 11</h3>
+              <p class="artifact-sub">My Dominant Teaching Style</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-12', 'Files/Worksheet-12.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">14</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 12</h3>
+              <p class="artifact-sub">My e-Portfolio and Self-Assessment</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-13', 'Files/Worksheet-13.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">15</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 13</h3>
+              <p class="artifact-sub">Lesson Plan Development SelfPeer Assessment_082026</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <button class="artifact-card" onclick="openPdfModal('Worksheet-14', 'Files/Worksheet-14.pdf')">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="artifact-num">16</span>
+                <span class="artifact-badge">PDF Document</span>
+              </div>
+              <h3 class="artifact-title">Worksheet 14</h3>
+              <p class="artifact-sub">Online Demo Lesson Observation Tool_September 2026</p>
+            </div>
+            <div class="artifact-footer">
+              <span>View PDF Document</span>
+              <span>&rarr;</span>
+            </div>
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+<!-- PORTFOLIO SUBSECTIONS -->
+<section class="section-padding bg-light" id="portfolio">
+  <div class="container-xxl">
+    <p class="section-eyebrow">05 &middot; Portfolio Educ 4</p>
+    <h2 class="serif section-title mb-5">Assessment of Learning</h2>
+
+    <!-- Grid Layout -->
+    <div class="row g-4">
+      
+      <!-- Card 1 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="elem-card" onclick="openDualModal({
+          badge: 'BASIC CONCEPT IN ASSESSMENT AND EVALUATION',
+          title: 'The Art of Measuring Learning',
+          
+          /* Column 1 Data */
+          col1Title: 'Assessment FOR Learning',
+          col1FileUrl: 'path/to/file1.pdf',
+          col1FileType: 'PDF Document',
+          col1Desc: 'As a CTP student preparing for my future classroom, Assessment FOR Learning will be one of the cornerstones of my teaching practice. It is important for a teacher to start the class with diagnostic checks to reveal prior knowledge and address misconceptions early. During lessons, I can use strategic questioning, quick quizzes, and observations to track student understanding in real time.',
+          
+          /* Column 2 Data */
+          col2Title: 'Case Analysis & Equity',
+          col2FileUrl: 'path/to/file2.pdf',
+          col2FileType: 'PDF Document',
+          col2Desc: 'This case analysis gave me a new perspective on assessment: a meaningful task must balance challenge with equity. As a future educator, I realized that assessment becomes unfair when a student’s access to money, technology, resources, or outside assistance has a greater influence on performance than their actual learning and effort.'
+        })">
+          <div class="elem-card-header">
+            <span class="elem-card-number">01</span>
+            <span class="elem-card-badge">2 FILES AVAILABLE</span>
+          </div>
+          <h4 class="elem-card-title">The Art of Measuring Learning</h4>
+          <p class="elem-card-subtitle">Basic Concept in Assessment and Evaluation</p>
+          <div class="elem-card-footer">
+            <span>View 2 Files & Details</span>
+            <span class="arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Cards follow the same pattern... -->
+
+      
+      <!-- Card 1 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="elem-card" onclick="openDualModal({
+          badge: 'Stages in the Development and Validation of an Assessment Instrument',
+          title: 'Making Every Item Count',
+          
+          /* Column 1 Data */
+          col1Title: 'Assessment FOR Learning',
+          col1FileUrl: 'path/to/file1.pdf',
+          col1FileType: 'PDF Document',
+          col1Desc: 'As a CTP student preparing for my future classroom, Assessment FOR Learning will be one of the cornerstones of my teaching practice. It is important for a teacher to start the class with diagnostic checks to reveal prior knowledge and address misconceptions early. During lessons, I can use strategic questioning, quick quizzes, and observations to track student understanding in real time.',
+          
+          /* Column 2 Data */
+          col2Title: 'Case Analysis & Equity',
+          col2FileUrl: 'path/to/file2.pdf',
+          col2FileType: 'PDF Document',
+          col2Desc: 'This case analysis gave me a new perspective on assessment: a meaningful task must balance challenge with equity. As a future educator, I realized that assessment becomes unfair when a student’s access to money, technology, resources, or outside assistance has a greater influence on performance than their actual learning and effort.'
+        })">
+          <div class="elem-card-header">
+            <span class="elem-card-number">02</span>
+            <span class="elem-card-badge">2 FILES AVAILABLE</span>
+          </div>
+          <h4 class="elem-card-title">Making Every Item Count</h4>
+          <p class="elem-card-subtitle">Stages in the Development and Validation of an Assessment Instrument</p>
+          <div class="elem-card-footer">
+            <span>View 2 Files & Details</span>
+            <span class="arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- DUAL-PANEL MODAL -->
+<div class="modal fade" id="dualModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-3 overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="modal-header border-bottom px-4 py-3 bg-white">
+        <div>
+          <span class="badge bg-soft-elem text-elem text-uppercase px-2 py-1 me-2" id="dualModalBadge">BADGE</span>
+          <h4 class="serif text-dark d-inline-block mb-0 align-middle" id="dualModalTitle">Title Placeholder</h4>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body (Two Side-by-Side Columns) -->
+      <div class="modal-body p-4 p-md-5 bg-light">
+        <div class="row g-4">
+          
+          <!-- Column 1 -->
+          <div class="col-12 col-md-6 border-end-md">
+            <div class="d-flex flex-column h-100 pe-md-3">
+              <!-- File Box 1 -->
+              <div class="elem-file-box mb-4">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <span class="badge bg-secondary text-uppercase" id="dualModalCol1FileType">PDF DOCUMENT</span>
+                  <small class="text-muted">Click to view</small>
+                </div>
+                <h5 class="serif text-dark mb-3" id="dualModalCol1Title">File 1 Title</h5>
+                
+                <!-- Open File Button 1 -->
+                <a id="dualModalCol1Btn" href="#" target="_blank" class="btn-elem-primary w-100">
+                  <span id="dualModalCol1BtnText">Open File 1</span> &nearr;
+                </a>
+              </div>
+              
+              <!-- Description 1 -->
+              <div class="text-muted leading-relaxed flex-grow-1" id="dualModalCol1Desc">
+                <!-- Description content 1 inserted via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="col-12 col-md-6">
+            <div class="d-flex flex-column h-100 ps-md-3">
+              <!-- File Box 2 -->
+              <div class="elem-file-box mb-4">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <span class="badge bg-secondary text-uppercase" id="dualModalCol2FileType">PDF DOCUMENT</span>
+                  <small class="text-muted">Click to view</small>
+                </div>
+                <h5 class="serif text-dark mb-3" id="dualModalCol2Title">File 2 Title</h5>
+                
+                <!-- Open File Button 2 -->
+                <a id="dualModalCol2Btn" href="#" target="_blank" class="btn-elem-primary w-100">
+                  <span id="dualModalCol2BtnText">Open File 2</span> &nearr;
+                </a>
+              </div>
+              
+              <!-- Description 2 -->
+              <div class="text-muted leading-relaxed flex-grow-1" id="dualModalCol2Desc">
+                <!-- Description content 2 inserted via JS -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <!-- PORTFOLIO / CIVer WEBINAR SECTION -->
+<section id="portfolio" class="py-5 bg-light">
+  <div class="container">
+    <!-- Header -->
+    <div class="row mb-4 align-items-end">
+      <div class="col-lg-6">
+        <span class="section-eyebrow">04 · Portfolio — CIVer Webinar</span>
+        <h2 class="display-5 fw-bold text-navy mt-1">CIVer Webinar</h2>
+      </div>
+      <div class="col-lg-6">
+        <p class="text-muted mb-0 text-lg-end">
+          A glimpse into my journey with the Community of Innovative and Versatile Educators (CIVer).
+        </p>
+      </div>
+    </div>
+
+    <!-- Image Cards Grid -->
+    <div class="row g-4">
+      <!-- Card 1 -->
+      <div class="col-12 col-md-4">
+        <div class="portfolio-card" onclick="openLightbox(0)">
+          <img src="Pics/civer-01.png" alt="Event Poster" class="img-fluid portfolio-img">
+          <div class="portfolio-overlay">
+            <span class="caption-tag">Event Poster</span>
+            <span class="view-btn">VIEW PHOTO &nearr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-12 col-md-4">
+        <div class="portfolio-card" onclick="openLightbox(1)">
+          <img src="Pics/civer-02.png" alt="Webinar Screenshot 1" class="img-fluid portfolio-img">
+          <div class="portfolio-overlay">
+            <span class="caption-tag">Webinar Session</span>
+            <span class="view-btn">VIEW PHOTO &nearr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-12 col-md-4">
+        <div class="portfolio-card" onclick="openLightbox(2)">
+          <img src="Pics/civer-03.png" alt="Webinar Screenshot 2" class="img-fluid portfolio-img">
+          <div class="portfolio-overlay">
+            <span class="caption-tag">Participants</span>
+            <span class="view-btn">VIEW PHOTO &nearr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content bg-dark border-0 text-white">
+      <!-- Top Bar -->
+      <div class="modal-header border-0 px-4 pt-3 pb-0">
+        <div class="modal-title-wrap">
+          <small class="eyebrow text-uppercase fw-bold">CIVer Photos</small>
+          <h6 class="mb-0 text-secondary" id="lightboxCaption">CIVer Webinar — Event Poster</h6>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Main Viewer Area -->
+      <div class="modal-body position-relative p-4 d-flex justify-content-center align-items-center">
+        <!-- Navigation Buttons -->
+        <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+        
+        <img id="lightboxImg" src="" alt="Enlarged view" class="img-fluid rounded shadow-lg modal-photo">
+
+        <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+      </div>
+
+      <!-- Footer Counter -->
+      <div class="modal-footer border-0 justify-content-center pb-3 pt-0">
+        <span id="lightboxCounter" class="badge bg-secondary opacity-75">1 / 3</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT CTA SECTION -->
+  <section class="contact-cta-section" id="contact">
+    <div class="container-xxl">
+      <p class="section-eyebrow text-warning mb-2">05 &middot; Contact</p>
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="contact-cta-title">Let’s connect<br><em>and exchange ideas.</em></h2>
+          <p class="contact-subtext mb-0">Feel free to send an email or click the links for more information.</p>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="contact-info-list">
+            <div class="contact-info-row">
+              <div class="contact-label">EMAIL</div>
+              <div class="contact-value">
+                <a href="mailto:gardoce.l@pnu.edu.ph">gardoce.rmlm@stud.pnu.ph | gardoce.louis@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-info-row">
+              <div class="contact-label">OFFICE</div>
+              <div class="contact-value">
+               Placeholder
+              </div>
+            </div>
+
+            <div class="contact-info-row">
+              <div class="contact-label">LINKS</div>
+              <div class="contact-value">
+                <a href="https://www.linkedin.com/in/lou-gardoce-714996234/" target="_blank">Linkedin</a> &middot;
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container-xxl text-center">
+      <p class="small text-muted mb-0">&copy; Louis Gardoce. All rights reserved. Academic e-Portfolio.</p>
+    </div>
+  </footer>
+
+  <!-- PDF MODAL -->
+  <div class="modal fade pdf-modal" id="pdfViewerModal" tabindex="-1" aria-labelledby="pdfViewerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="modal-title serif text-dark" id="pdfViewerModalLabel">Document Viewer</h5>
+            <span class="text-muted small" id="pdfSubTitle">Academic Artifact Preview</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <a href="#" id="pdfExternalLink" target="_blank" class="btn btn-sm btn-outline-secondary">Open in New Tab ↗</a>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <iframe id="pdfFrame" src="" title="PDF Document Viewer"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Mobile Nav Toggle
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('show');
+      });
+    }
+
+    // Close mobile nav when clicking a link
+    document.querySelectorAll('.nav-link-custom:not(.dropdown-toggle), .dropdown-item').forEach(link => {
+      link.addEventListener('click', () => {
+        if (mainNav.classList.contains('show')) {
+          mainNav.classList.remove('show');
+        }
+      });
+    });
+
+// Scroll active section tracking
+const navLinks = document.querySelectorAll('.nav-link-custom, .dropdown-item');
+const sections = document.querySelectorAll('section[id], .landing-hero-block[id], .subsection-block[id]');
+
+function updateActiveNavLink() {
+  const scrollPosition = window.scrollY;
+  const viewportHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+  
+  // 1. Check if user has scrolled to the bottom of the page (activates #contact)
+  const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 25);
+  
+  let currentSectionId = "";
+
+  if (isAtBottom) {
+    // If scrolled to the very bottom, activate the last section (#contact)
+    currentSectionId = "contact";
+  } else {
+    // 2. Find section currently in view using absolute offset bounds
+    sections.forEach(section => {
+      // Calculate true position relative to top of page
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + window.scrollY - 140; // Offset for sticky navbar height
+      const sectionBottom = sectionTop + section.offsetHeight;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        currentSectionId = section.getAttribute('id');
+      }
+    });
+  }
+
+  // 3. Update navbar active classes
+  if (currentSectionId) {
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      
+      const href = link.getAttribute('href');
+      
+      if (href === `#${currentSectionId}`) {
+        link.classList.add('active');
+        
+        // If it's a dropdown item (e.g. #masteral, #doctorate), activate parent toggle too
+        const parentDropdown = link.closest('.dropdown');
+        if (parentDropdown) {
+          const toggle = parentDropdown.querySelector('.dropdown-toggle');
+          if (toggle) toggle.classList.add('active');
+        }
+      }
+    });
+
+    // If active section is a sub-item of portfolio, keep Portfolio dropdown highlighted
+    if (['masteral', 'doctorate', 'webinars', 'portfolio'].includes(currentSectionId)) {
+      const portfolioToggle = document.getElementById('portfolioDrop');
+      if (portfolioToggle) portfolioToggle.classList.add('active');
+    }
+  }
+}
+
+// Attach scroll and resize listeners
+window.addEventListener('scroll', updateActiveNavLink);
+window.addEventListener('load', updateActiveNavLink);
+window.addEventListener('resize', updateActiveNavLink);
+
+
+    // PDF Viewer Modal Handler
+function openPdfModal(title, pdfUrl) {
+  // Set modal title
+  document.getElementById('pdfViewerModalLabel').innerText = title;
+
+  const pdfFrame = document.getElementById('pdfFrame');
+  const externalLink = document.getElementById('pdfExternalLink');
+
+  // Set direct path for iframe and download button
+  pdfFrame.src = pdfUrl;
+  externalLink.href = pdfUrl;
+
+  // Show Bootstrap Modal
+  const modal = new bootstrap.Modal(document.getElementById('pdfViewerModal'));
+  modal.show();
+}
+
+// Data for the portfolio items
+const galleryData = [
+  {
+    src: "Pics/civer-01.png",
+    caption: "CIVer Webinar — Event Poster"
+  },
+  {
+    src: "Pics/civer-02.png",
+    caption: "CIVer Webinar — Session Grid View"
+  },
+  {
+    src: "Pics/civer-03.png",
+    caption: "CIVer Webinar — Attendees View"
+  }
+];
+
+let currentIndex = 0;
+let lightboxModal;
+
+document.addEventListener("DOMContentLoaded", function () {
+  lightboxModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+});
+
+function openLightbox(index) {
+  currentIndex = index;
+  updateLightbox();
+  lightboxModal.show();
+}
+
+function changeSlide(direction) {
+  currentIndex = (currentIndex + direction + galleryData.length) % galleryData.length;
+  updateLightbox();
+}
+
+function updateLightbox() {
+  const item = galleryData[currentIndex];
+  document.getElementById('lightboxImg').src = item.src;
+  document.getElementById('lightboxCaption').textContent = item.caption;
+  document.getElementById('lightboxCounter').textContent = `${currentIndex + 1} / ${galleryData.length}`;
+}
+
+// Optional: Keyboard Arrow Key Navigation
+document.addEventListener('keydown', function(e) {
+  const modalEl = document.getElementById('lightboxModal');
+  if (modalEl.classList.contains('show')) {
+    if (e.key === 'ArrowLeft') changeSlide(-1);
+    if (e.key === 'ArrowRight') changeSlide(1);
+  }
+});
+let dualModalInstance;
+
+document.addEventListener('DOMContentLoaded', function () {
+  dualModalInstance = new bootstrap.Modal(document.getElementById('dualModal'));
+});
+
+function openDualModal(data) {
+  // Header
+  document.getElementById('dualModalBadge').textContent = data.badge;
+  document.getElementById('dualModalTitle').textContent = data.title;
+
+  // Column 1
+  document.getElementById('dualModalCol1Title').textContent = data.col1Title;
+  document.getElementById('dualModalCol1FileType').textContent = data.col1FileType || 'PDF DOCUMENT';
+  document.getElementById('dualModalCol1Btn').href = data.col1FileUrl || '#';
+  document.getElementById('dualModalCol1BtnText').textContent = data.col1BtnLabel || 'Open File 1';
+  document.getElementById('dualModalCol1Desc').textContent = data.col1Desc;
+
+  // Column 2
+  document.getElementById('dualModalCol2Title').textContent = data.col2Title;
+  document.getElementById('dualModalCol2FileType').textContent = data.col2FileType || 'PDF DOCUMENT';
+  document.getElementById('dualModalCol2Btn').href = data.col2FileUrl || '#';
+  document.getElementById('dualModalCol2BtnText').textContent = data.col2BtnLabel || 'Open File 2';
+  document.getElementById('dualModalCol2Desc').textContent = data.col2Desc;
+
+  // Show Modal
+  dualModalInstance.show();
+}
+  </script>
+
+</body>
+</html> 
