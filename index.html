@@ -657,10 +657,10 @@
   line-height: 1.7;
   margin-bottom: 0.8rem;
 }
-/* Ensure uniform box height so buttons align across both columns */
 .elem-file-box {
   background: #ffffff;
   border: 1px solid var(--elem-border-line, #e5e0d8);
+  border-top: 4px solid var(--elem-accent, #c85a32);
   border-radius: 8px;
   padding: 1.5rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
@@ -670,13 +670,12 @@
   min-height: 160px;
 }
 
-/* Button Styling */
 .btn-elem-primary {
   background-color: var(--elem-accent, #c85a32);
   color: #ffffff !important;
   font-weight: 600;
   font-size: 0.9rem;
-  padding: 0.6rem 1rem;
+  padding: 0.65rem 1rem;
   border-radius: 6px;
   text-decoration: none;
   display: inline-flex;
@@ -690,17 +689,6 @@
   background-color: #b04e2a;
   color: #ffffff !important;
   transform: translateY(-1px);
-}
-
-.btn-elem-primary:active {
-  transform: translateY(0);
-}
-
-/* Modal Divider Line on Desktop */
-@media (min-width: 768px) {
-  .border-end-md {
-    border-right: 1px solid var(--elem-border-line) !important;
-  }
 }
 
 #dualModalCol1Desc, #dualModalCol2Desc {
@@ -1559,26 +1547,11 @@
           </button>
         </div>
 
-        <div class="col-md-6 col-lg-4">
-          <button class="artifact-card" onclick="openPdfModal('WorksheetonWeekly', 'Files/WorksheetonWeekly.pdf')">
-            <div>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="artifact-num">17</span>
-                <span class="artifact-badge">PDF Document</span>
-              </div>
-              <h3 class="artifact-title">Curriculum Planning</h3>
-              <p class="artifact-sub">Worksheet on Weekly Curriculum Planning _AUG 2026 </p>
-            </div>
-            <div class="artifact-footer">
-              <span>View PDF Document</span>
-              <span>&rarr;</span>
-            </div>
-          </button>
-        </div>
 
       </div>
     </div>
   </section>
+
 
 <!-- PORTFOLIO SUBSECTIONS -->
 <section class="section-padding bg-light" id="portfolio">
@@ -1586,69 +1559,176 @@
     <p class="section-eyebrow">05 &middot; Portfolio Educ 4</p>
     <h2 class="serif section-title mb-5">Assessment of Learning</h2>
 
-    <!-- Grid Layout -->
     <div class="row g-4">
       
-      <!-- Card 1 -->
+      <!-- CARD 1: INTRODUCTION (Text Only) -->
       <div class="col-12 col-md-6 col-lg-4">
-        <div class="elem-card" onclick="openDualModal({
-          badge: 'BASIC CONCEPT IN ASSESSMENT AND EVALUATION',
-          title: 'The Art of Measuring Learning',
-          
-          /* Column 1 Data */
-          col1Title: 'Assessment FOR Learning',
-          col1FileUrl: 'path/to/file1.pdf',
-          col1FileType: 'PDF Document',
-          col1Desc: 'As a CTP student preparing for my future classroom, Assessment FOR Learning will be one of the cornerstones of my teaching practice. It is important for a teacher to start the class with diagnostic checks to reveal prior knowledge and address misconceptions early. During lessons, I can use strategic questioning, quick quizzes, and observations to track student understanding in real time.',
-          
-          /* Column 2 Data */
-          col2Title: 'Case Analysis & Equity',
-          col2FileUrl: 'path/to/file2.pdf',
-          col2FileType: 'PDF Document',
-          col2Desc: 'This case analysis gave me a new perspective on assessment: a meaningful task must balance challenge with equity. As a future educator, I realized that assessment becomes unfair when a student’s access to money, technology, resources, or outside assistance has a greater influence on performance than their actual learning and effort.'
+        <div class="elem-card" onclick="openElemModal({
+          badge: 'OVERVIEW & INTRODUCTION',
+          title: 'Teaching Philosophy on Assessment and Evaluation',
+          introText: ' <p>I believe that assessment and evaluation are not merely mechanisms for grading, but are integral, dynamic components of the teaching and learning process. Assessment should serve as a compass guiding teachers to refine their instructional strategies while empowering students to understand their own strengths and areas for growth. True evaluation must be holistic, fair, and valid, providing meaningful feedback that goes beyond simple numerical scores to genuinely reflect a learner\'s potential and progress..</p> <p>In a diverse educational landscape, assessments must also be inclusive, ethical, and culturally responsive. Every student deserves an equitable platform to demonstrate what they know through various, well-crafted traditional and authentic performance tasks. Ultimately, my core belief is that assessment should never be used punitively or as a tool for judgment; rather, it should serve as a supportive bridge that builds confidence, nurtures lifelong learning, and honors the dignity of every student.</p>'
         })">
           <div class="elem-card-header">
             <span class="elem-card-number">01</span>
-            <span class="elem-card-badge">2 FILES AVAILABLE</span>
+            <span class="elem-card-badge">INTRODUCTION</span>
           </div>
-          <h4 class="elem-card-title">The Art of Measuring Learning</h4>
-          <p class="elem-card-subtitle">Basic Concept in Assessment and Evaluation</p>
+          <h4 class="elem-card-title">Teaching Philosophy on Assessment and Evaluation</h4>
+          <p class="elem-card-subtitle">Overview & Introduction</p>
           <div class="elem-card-footer">
-            <span>View 2 Files & Details</span>
+            <span>Read Introduction</span>
             <span class="arrow">&rarr;</span>
           </div>
         </div>
       </div>
 
-      <!-- Additional Cards follow the same pattern... -->
-
-      
-      <!-- Card 1 -->
+      <!-- CARD 2: 3 Files -->
       <div class="col-12 col-md-6 col-lg-4">
-        <div class="elem-card" onclick="openDualModal({
-          badge: 'Stages in the Development and Validation of an Assessment Instrument',
-          title: 'Making Every Item Count',
-          
-          /* Column 1 Data */
-          col1Title: 'Assessment FOR Learning',
-          col1FileUrl: 'path/to/file1.pdf',
-          col1FileType: 'PDF Document',
-          col1Desc: 'As a CTP student preparing for my future classroom, Assessment FOR Learning will be one of the cornerstones of my teaching practice. It is important for a teacher to start the class with diagnostic checks to reveal prior knowledge and address misconceptions early. During lessons, I can use strategic questioning, quick quizzes, and observations to track student understanding in real time.',
-          
-          /* Column 2 Data */
-          col2Title: 'Case Analysis & Equity',
-          col2FileUrl: 'path/to/file2.pdf',
-          col2FileType: 'PDF Document',
-          col2Desc: 'This case analysis gave me a new perspective on assessment: a meaningful task must balance challenge with equity. As a future educator, I realized that assessment becomes unfair when a student’s access to money, technology, resources, or outside assistance has a greater influence on performance than their actual learning and effort.'
+        <div class="elem-card" onclick="openElemModal({
+          badge: 'The Art of Measuring Learning',
+          title: 'The Blueprint: Mapping Assessment Purposes & Concepts',
+          files: [
+            {
+              title: 'Purposes of assessment',
+              fileType: 'PDF DOCUMENT',
+              btnLabel: 'Worksheet 1',
+              fileUrl: 'CILO/WS1.pdf',
+              description: 'This artifact is a collaborative matrix detailing the nature of summative assessment, teacher and student roles, planning guidelines, and concrete assessment examples. I selected this output because it clearly outlines the core principles and purposes of evaluating student achievement at the end of a learning cycle. Completing this matrix helped me achieve CILO 1 by clarifying how valid, credible, and transparent assessment methods confirm student proficiency. In my future classroom, I will apply these concepts by aligning summative assessments with clear competencies and using transparent rubrics to ensure fair, defensible evaluations.'
+            },
+            {
+              title: 'Assessment Principles Case Analysis',
+              fileType: 'PDF DOCUMENT',
+              btnLabel: 'Worksheet 2',
+              fileUrl: 'CILO/WS2.pdf',
+              description: 'This artifact is a collaborative case analysis evaluating a blended learning assessment scenario marked by internet connectivity issues and AI chatbot misuse, analyzing how these issues affect core principles like fairness, validity, ethics, and appropriateness of methods. I selected this output because it vividly illustrates the real-world challenges of evaluating students in modern digital environments. Working through this case helped me achieve CILO 1 by deepening my understanding of how technical barriers and ethical compromises directly undermine test validity and fairness. In my future classroom, I will apply these insights by designing flexible, resilient assessment strategies such as self-paced formative tasks and scheduled on-site synthesis checks ensuring every student is evaluated equitably, authentically, and ethically regardless of technological constraints.'
+            }
+          ]
         })">
           <div class="elem-card-header">
-            <span class="elem-card-number">02</span>
-            <span class="elem-card-badge">2 FILES AVAILABLE</span>
+            <span class="elem-card-number">CILO 01</span>
+            <span class="elem-card-badge">3 FILES AVAILABLE</span>
           </div>
-          <h4 class="elem-card-title">Making Every Item Count</h4>
-          <p class="elem-card-subtitle">Stages in the Development and Validation of an Assessment Instrument</p>
+          <h4 class="elem-card-title">The Blueprint: Mapping Assessment Purposes & Concepts</h4>
+          <p class="elem-card-subtitle">The Art of Measuring Learning</p>
           <div class="elem-card-footer">
-            <span>View 2 Files & Details</span>
+            <span>View Files & Details</span>
+            <span class="arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: 2 Files -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="elem-card" onclick="openElemModal({
+          badge: 'More Than Marks',
+          title: 'The Framework: Engineering Effective Assessment Instruments',
+          files: [
+            {
+              title: 'ADD2 PBA with rubric',
+              fileType: 'PDF DOCUMENT',
+              btnLabel: 'Worksheet 3',
+              fileUrl: 'CILO/WS3.pdf',
+              description: 'This artifact features an authentic performance-based assessment design for Grade 7 Araling Panlipunan structured using the GRASPS framework (Goal, Role, Audience, Situation, Product, Standards) for a historical role-play on ancient Southeast Asian maritime trade, accompanied by a weighted analytic scoring rubric and scoring interpretation scale. I selected this output because it demonstrates my practical ability to align complex curriculum learning competencies with authentic performance tasks and transparent assessment criteria. Developing this task helped me achieve CILO 2 by providing hands-on experience in constructing clear, multi-criterion scoring rubrics that measure both higher-order cognitive understanding and collaborative execution. In my future classroom, I will apply these skills by implementing GRASPS - aligned performance assessments and criteria-based rubrics, ensuring my students understand learning expectations in advance while experiencing meaningful, context-rich evaluations beyond traditional paper-and-pencil tests.'
+            },
+            {
+              title: 'ADD2 TOS Template with rubric',
+              fileType: 'PDF DOCUMENT',
+              btnLabel: 'Worksheet 4',
+              fileUrl: 'CILO/WS4.pdf',
+              description: 'This artifact features a Table of Specifications (TOS) developed for Grade 7 Science (Quarter 2) on Ecosystems, systematically mapping learning competencies, session hours, weight percentages, and item placements across Bloom’s revised cognitive domain levels. I selected this output because it demonstrates my ability to design a balanced, valid traditional test structure anchored on standard curriculum goals. Creating this TOS helped me achieve CILO 2 by teaching me how to design and align assessment instruments logically, ensuring that paper-and-pencil testing tools accurately measure student cognitive achievement. In my future classroom, I will apply this skill by constructing a TOS prior to developing any objective test, ensuring that my assessment tools are valid, balanced, and purposefully aligned with target learning outcomes.'
+            },
+            {
+              title: 'WS 5 - Test item template and rubric',
+              fileType: 'PDF DOCUMENT',
+              btnLabel: 'Worksheet 5',
+              fileUrl: 'CILO/WS5.pdf',
+              description: 'This artifact is a collaborative 30-item multiple-choice objective test built for Grade 7 Science (Ecosystems), accompanied by an item-by-item answer key and analytical justification matrix mapping each question directly back to the Table of Specifications (TOS). I chose this artifact because it showcases my competency in operationalizing a TOS into valid, well-structured paper-and-pencil assessment items across various cognitive levels—ranging from basic recall of biotic/abiotic factors to applying knowledge of biological hierarchies and evaluating human environmental impacts. Constructing this exam helped me achieve CILO 2 by teaching me how to apply strict guidelines in test item writing, construct plausible distractors, and ensure strong content validity. In my future classroom, I will utilize these skills to draft clear, error-free, and curriculum-aligned objective assessments, using comprehensive item keys to maintain objective grading while ensuring my tests accurately measure student learning targets.'
+            }
+          ]
+        })">
+          <div class="elem-card-header">
+            <span class="elem-card-number">CILO 02</span>
+            <span class="elem-card-badge">3 FILES AVAILABLE</span>
+          </div>
+          <h4 class="elem-card-title">The Framework: Engineering Effective Assessment Instruments</h4>
+          <p class="elem-card-subtitle">More Than Mark</p>
+          <div class="elem-card-footer">
+            <span>View Files & Details</span>
+            <span class="arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 4: 2 Files -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="elem-card" onclick="openElemModal({
+          badge: 'Making Every Item Count',
+          title: 'The Measurement: Analyzing Data for Continuous Improvement',
+          files: [
+            {
+              title: 'Data Organization and Interpretation',
+              fileType: 'PDF DOCUMENT',
+              btnLabel: 'Worksheet 7',
+              fileUrl: 'CILO/WS7.pdf',
+              description: 'This artifact is a statistical report (Worksheet 7) analyzing pre- and post-test data through central tendency, score distributions, correlation, and percentile ranks to establish test validity and reliability. I selected this output because it demonstrates my ability to process and interpret quantitative assessment data to evaluate test quality and student performance. Completing this analysis helped me achieve CILO 3 by equipping me with skills to measure score stability, test reliability, and individual learning growth. In my future classroom, I will apply these statistical tools to refine my assessment instruments, identify learning gains or gaps, and make data-driven instructional adjustments. '
+            }
+          ]
+        })">
+          <div class="elem-card-header">
+            <span class="elem-card-number">CILO 03</span>
+            <span class="elem-card-badge">1 FILE AVAILABLE</span>
+          </div>
+          <h4 class="elem-card-title">The Measurement: Analyzing Data for Continuous Improvement</h4>
+          <p class="elem-card-subtitle">Making Every Item Count</p>
+          <div class="elem-card-footer">
+            <span>View Files & Details</span>
+            <span class="arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 5: 2 Files -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="elem-card" onclick="openElemModal({
+          badge: 'Watching Principles at Work',
+          title: 'The Mirror: Analyzing Live Classroom Assessment Practices',
+          files: [
+            {
+              title: 'Classroom Observation 2',
+              fileType: 'PDF DOCUMENT',
+              btnLabel: 'Worksheet 2E',
+              fileUrl: 'CILO/WS2E.pdf',
+              description: 'This artifact features my Classroom Teaching Observation Tool from a Grade 9 English lesson on &quot;The Lottery&quot; at PNU CTL, where I documented and evaluated the live integration of a diagnostic drill (&quot;Pose or Oppose?&quot;), formative Think-Pair-Share checks, and a summative &quot;Polarity Map&quot; performance task evaluated with a 20-point analytic rubric. I chose this document because it directly demonstrates my ability to identify, analyze, and critique real-time classroom assessment strategies and constructive feedback loops against COT Indicators 20 and 21, successfully bridging theoretical principles with actual teaching practice. In my future classroom, I will apply these insights by designing low-stakes diagnostic hooks to anchor new concepts, providing transparent rubrics prior to task execution, and using immediate formative feedback to guide student understanding before final evaluation.'
+            }
+          ]
+        })">
+          <div class="elem-card-header">
+            <span class="elem-card-number">CILO 04</span>
+            <span class="elem-card-badge">1 FILE AVAILABLE</span>
+          </div>
+          <h4 class="elem-card-title">The Mirror: Analyzing Live Classroom Assessment Practices </h4>
+          <p class="elem-card-subtitle">Watching Principles at Work</p>
+          <div class="elem-card-footer">
+            <span>View Files & Details</span>
+            <span class="arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 6: CONCLUSION (Text Only) -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="elem-card" onclick="openElemModal({
+          badge: 'SUMMARY & REFLECTION',
+          title: 'Critical Reflections',
+          introText: '<p>This personal transformation is deeply reflected in how each part of my learning journey connects. Establishing a solid foundation in core assessment principles  such as validity, fairness, and ethical responsibility directly guided how I designed practical assessment instruments, including authentic performance rubrics and structured test blueprints. Constructing balanced tests allowed me to gather raw classroom data, which I then analyzed using statistical tools like score distributions, correlation, and percentile rankings to verify test reliability and measure class progress. Ultimately, these analytical insights provided the clear, objective evidence needed to communicate learning progress meaningfully and tailor meaningful support for both students and parents.</p> <p>As a future educator, I am committed to making my assessments inclusive, fair, and culturally responsive to honor the diverse backgrounds of learners in the Philippines. Rather than relying strictly on rigid, high-stakes exams that can disadvantage students facing technological or socio-economic barriers, I will offer flexible assessment options and localized performance tasks that give every student a genuine opportunity to demonstrate what they know. </p> <p>Ethically, I will always handle student assessment data with utmost confidentiality, care, and integrity. I refuse to use grades or test scores punitively; instead, I will use assessment data as a diagnostic compass to identify learning gaps, refine my daily teaching practices, and provide constructive, growth-oriented feedback that upholds the dignity of every learner.</p> <p>Ultimately, this ePortfolio reflects my commitment to becoming a future-ready educator who values fair, valid, and purposeful assessment practices. By mastering the entire cycle—from constructing balanced tools to analyzing student performance data I am equipped to make informed, data-driven decisions that directly support learning. As I step into my future classroom, I will continue to use assessment not as a tool for judgment, but as a bridge toward inclusive, culturally responsive, and continuous student growth.</p>'
+        })">
+          <div class="elem-card-header">
+            <span class="elem-card-number">06</span>
+            <span class="elem-card-badge">REFLECTION</span>
+          </div>
+          <h4 class="elem-card-title">Critical Reflections</h4>
+          <p class="elem-card-subtitle">Final Thoughts & Key Takeaways</p>
+          <div class="elem-card-footer">
+            <span>Read Conclusion</span>
             <span class="arrow">&rarr;</span>
           </div>
         </div>
@@ -1658,73 +1738,28 @@
   </div>
 </section>
 
-
-<!-- DUAL-PANEL MODAL -->
-<div class="modal fade" id="dualModal" tabindex="-1" aria-hidden="true">
+<!-- DYNAMIC MULTI-FILE / TEXT MODAL -->
+<div class="modal fade" id="elemDynamicModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content border-0 shadow-lg rounded-3 overflow-hidden">
       
       <!-- Modal Header -->
       <div class="modal-header border-bottom px-4 py-3 bg-white">
         <div>
-          <span class="badge bg-soft-elem text-elem text-uppercase px-2 py-1 me-2" id="dualModalBadge">BADGE</span>
-          <h4 class="serif text-dark d-inline-block mb-0 align-middle" id="dualModalTitle">Title Placeholder</h4>
+          <span class="badge bg-soft-elem text-elem text-uppercase px-2 py-1 me-2" id="elemModalBadge">BADGE</span>
+          <h4 class="serif text-dark d-inline-block mb-0 align-middle" id="elemModalTitle">Title Placeholder</h4>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <!-- Modal Body (Two Side-by-Side Columns) -->
+      <!-- Modal Body -->
       <div class="modal-body p-4 p-md-5 bg-light">
-        <div class="row g-4">
-          
-          <!-- Column 1 -->
-          <div class="col-12 col-md-6 border-end-md">
-            <div class="d-flex flex-column h-100 pe-md-3">
-              <!-- File Box 1 -->
-              <div class="elem-file-box mb-4">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                  <span class="badge bg-secondary text-uppercase" id="dualModalCol1FileType">PDF DOCUMENT</span>
-                  <small class="text-muted">Click to view</small>
-                </div>
-                <h5 class="serif text-dark mb-3" id="dualModalCol1Title">File 1 Title</h5>
-                
-                <!-- Open File Button 1 -->
-                <a id="dualModalCol1Btn" href="#" target="_blank" class="btn-elem-primary w-100">
-                  <span id="dualModalCol1BtnText">Open File 1</span> &nearr;
-                </a>
-              </div>
-              
-              <!-- Description 1 -->
-              <div class="text-muted leading-relaxed flex-grow-1" id="dualModalCol1Desc">
-                <!-- Description content 1 inserted via JS -->
-              </div>
-            </div>
-          </div>
-
-          <!-- Column 2 -->
-          <div class="col-12 col-md-6">
-            <div class="d-flex flex-column h-100 ps-md-3">
-              <!-- File Box 2 -->
-              <div class="elem-file-box mb-4">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                  <span class="badge bg-secondary text-uppercase" id="dualModalCol2FileType">PDF DOCUMENT</span>
-                  <small class="text-muted">Click to view</small>
-                </div>
-                <h5 class="serif text-dark mb-3" id="dualModalCol2Title">File 2 Title</h5>
-                
-                <!-- Open File Button 2 -->
-                <a id="dualModalCol2Btn" href="#" target="_blank" class="btn-elem-primary w-100">
-                  <span id="dualModalCol2BtnText">Open File 2</span> &nearr;
-                </a>
-              </div>
-              
-              <!-- Description 2 -->
-              <div class="text-muted leading-relaxed flex-grow-1" id="dualModalCol2Desc">
-                <!-- Description content 2 inserted via JS -->
-              </div>
-            </div>
-          </div>
-
+        <!-- Container for Multi-File Grids -->
+        <div class="row g-4 justify-content-center" id="elemModalFilesContainer"></div>
+        
+        <!-- Container for Text-Only Content (Intro & Conclusion) -->
+        <div id="elemModalTextContainer" class="bg-white p-4 p-md-5 rounded-3 shadow-sm d-none">
+          <div id="elemModalTextContent" class="text-muted leading-relaxed" style="font-size: 1.05rem; line-height: 1.85;"></div>
         </div>
       </div>
 
@@ -2084,35 +2119,76 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight') changeSlide(1);
   }
 });
-let dualModalInstance;
+
+
+let elemModalInstance;
 
 document.addEventListener('DOMContentLoaded', function () {
-  dualModalInstance = new bootstrap.Modal(document.getElementById('dualModal'));
+  elemModalInstance = new bootstrap.Modal(document.getElementById('elemDynamicModal'));
 });
 
-function openDualModal(data) {
-  // Header
-  document.getElementById('dualModalBadge').textContent = data.badge;
-  document.getElementById('dualModalTitle').textContent = data.title;
+function openElemModal(data) {
+  // Set Modal Header
+  document.getElementById('elemModalBadge').textContent = data.badge;
+  document.getElementById('elemModalTitle').textContent = data.title;
 
-  // Column 1
-  document.getElementById('dualModalCol1Title').textContent = data.col1Title;
-  document.getElementById('dualModalCol1FileType').textContent = data.col1FileType || 'PDF DOCUMENT';
-  document.getElementById('dualModalCol1Btn').href = data.col1FileUrl || '#';
-  document.getElementById('dualModalCol1BtnText').textContent = data.col1BtnLabel || 'Open File 1';
-  document.getElementById('dualModalCol1Desc').textContent = data.col1Desc;
+  const filesContainer = document.getElementById('elemModalFilesContainer');
+  const textContainer = document.getElementById('elemModalTextContainer');
+  const textContent = document.getElementById('elemModalTextContent');
 
-  // Column 2
-  document.getElementById('dualModalCol2Title').textContent = data.col2Title;
-  document.getElementById('dualModalCol2FileType').textContent = data.col2FileType || 'PDF DOCUMENT';
-  document.getElementById('dualModalCol2Btn').href = data.col2FileUrl || '#';
-  document.getElementById('dualModalCol2BtnText').textContent = data.col2BtnLabel || 'Open File 2';
-  document.getElementById('dualModalCol2Desc').textContent = data.col2Desc;
+  // Reset containers
+  filesContainer.innerHTML = '';
+  filesContainer.classList.add('d-none');
+  textContainer.classList.add('d-none');
 
-  // Show Modal
-  dualModalInstance.show();
+  // CHECK IF TEXT-ONLY MODAL (Intro or Conclusion)
+  if (data.introText) {
+    textContent.innerHTML = data.introText;
+    textContainer.classList.remove('d-none');
+  } 
+  // OTHERWISE RENDER FILES (Modals 2 to 5)
+  else if (data.files && data.files.length > 0) {
+    filesContainer.classList.remove('d-none');
+    
+    const fileCount = data.files.length;
+    let colClass = 'col-12 col-md-6';
+    if (fileCount === 3) {
+      colClass = 'col-12 col-md-4';
+    } else if (fileCount === 1) {
+      colClass = 'col-12 col-md-8';
+    }
+
+    data.files.forEach((file) => {
+      const col = document.createElement('div');
+      col.className = colClass;
+
+      col.innerHTML = `
+        <div class="d-flex flex-column h-100">
+          <div class="elem-file-box mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="badge bg-secondary text-uppercase">${file.fileType || 'PDF DOCUMENT'}</span>
+              <small class="text-muted">Click to view</small>
+            </div>
+            <h5 class="serif text-dark mb-3">${file.title}</h5>
+            
+            <a href="${file.fileUrl || '#'}" target="_blank" class="btn-elem-primary w-100">
+              Open ${file.btnLabel || 'File'} &nearr;
+            </a>
+          </div>
+          
+          <div class="text-muted leading-relaxed flex-grow-1" style="font-size: 0.92rem; line-height: 1.7;">
+            ${file.description || ''}
+          </div>
+        </div>
+      `;
+
+      filesContainer.appendChild(col);
+    });
+  }
+
+  // Open Modal
+  elemModalInstance.show();
 }
   </script>
-
 </body>
 </html> 
